@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+LIST="$(i3-msg -t get_workspaces | jq -r '.[] | .name')"
+
+CHOICE="$(echo "$LIST" | dmenu -i -p 'ws >>')"
+
+[ -n "$CHOICE" ] && i3-msg move container to workspace "$CHOICE"
