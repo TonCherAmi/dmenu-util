@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+LIST="$(i3-msg -t get_tree | jq '.nodes[] | select(.name != "__i3") | .nodes[] | select(.type == "con") | .nodes[] | select(.type == "workspace") | .nodes[] | .name')"
+
+CHOICE="$(echo "$LIST" | dmenu -i -p 'wn >>')"
+
+[ -n "$CHOICE" ] && i3-msg "[title="$CHOICE"] focus"
